@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="mainViewModel"
+            type="android.example.readingdiary.sections.main_list.MainViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".sections.main_list.MainFragment"
+        android:paddingHorizontal="@dimen/common_view_horizontal_padding"
+        android:paddingVertical="@dimen/common_view_vertical_padding"
+        android:background="@color/background_gray">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/book_list"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:itemCount="50"
+            tools:listitem="@layout/book_list_row" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

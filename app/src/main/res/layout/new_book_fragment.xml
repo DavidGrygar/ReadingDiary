@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    tools:context=".sections.new_book.NewBookFragment">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="android.example.readingdiary.sections.EditNewViewModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <include android:id="@+id/root_include"
+            layout="@layout/edit_new_shared_part"
+            bind:viewModel="@{viewModel}"/>
+    </FrameLayout>
+</layout>

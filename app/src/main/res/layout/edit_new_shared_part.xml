@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="android.example.readingdiary.sections.EditNewViewModel" />
+        <import type="android.example.readingdiary.data.enums.BookType" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+                <EditText
+                    android:id="@+id/edit_new_book_name"
+                    style="@style/CommonEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="16dp"
+                    android:autofillHints=""
+                    android:background="@android:drawable/editbox_background_normal"
+                    android:hint="@string/book_name_string"
+                    android:inputType="text"
+                    android:text="@={viewModel.book.NAME}"
+                    android:textSize="@dimen/editText_textSize_4_of_5"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"
+                    app:layout_constraintBottom_toTopOf="@+id/edit_new_book_aduio_toogle"
+                    app:layout_constraintTop_toBottomOf="@+id/edit_new_book_name"
+                    tools:layout_editor_absoluteX="28dp" />
+
+                <ToggleButton
+                    android:id="@+id/edit_new_book_paper_toogle"
+                    android:layout_width="@dimen/book_type_icons_dimen"
+                    android:layout_height="@dimen/book_type_icons_dimen"
+                    android:background="@drawable/ic_book_selector"
+                    android:checked="@{viewModel.book.BOOK_TYPE == BookType.PAPERBACK.value}"
+                    android:onClick="@{() -> viewModel.bookTypeClicked(BookType.PAPERBACK.value)}"
+                    android:textOff="@string/empty"
+                    android:textOn="@string/empty"
+                    app:layout_constraintBottom_toBottomOf="@+id/edit_new_book_aduio_toogle"
+                    app:layout_constraintEnd_toStartOf="@+id/edit_new_book_aduio_toogle"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/edit_new_book_aduio_toogle" />
+
+                <ToggleButton
+                    android:id="@+id/edit_new_book_aduio_toogle"
+                    android:layout_width="@dimen/book_type_icons_dimen"
+                    android:layout_height="@dimen/book_type_icons_dimen"
+                    android:layout_marginTop="24dp"
+                    android:background="@drawable/ic_audio_selector"
+                    android:checked="@{viewModel.book.BOOK_TYPE == BookType.AUDIO.value}"
+                    android:onClick="@{() -> viewModel.bookTypeClicked(BookType.AUDIO.value)}"
+                    android:textOff="@string/empty"
+                    android:textOn="@string/empty"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/edit_new_book_name"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <ToggleButton
+                    android:id="@+id/edit_new_book_ebook_toogle"
+                    android:layout_width="@dimen/book_type_icons_dimen"
+                    android:layout_height="@dimen/book_type_icons_dimen"
+                    android:background="@drawable/ic_ebook_selector"
+                    android:checked="@{viewModel.book.BOOK_TYPE == BookType.EBOOK.value}"
+                    android:onClick="@{() -> viewModel.bookTypeClicked(BookType.EBOOK.value)}"
+                    android:textOff="@string/empty"
+                    android:textOn="@string/empty"
+                    app:layout_constraintBottom_toBottomOf="@+id/edit_new_book_aduio_toogle"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/edit_new_book_aduio_toogle"
+                    app:layout_constraintTop_toTopOf="@+id/edit_new_book_aduio_toogle" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"
+                    app:layout_constraintBottom_toTopOf="@+id/edit_new_book_reading_year_picker"
+                    app:layout_constraintTop_toBottomOf="@+id/edit_new_book_aduio_toogle" />
+
+                <NumberPicker
+                    android:id="@+id/edit_new_book_reading_year_picker"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline"
+                    app:layout_constraintStart_toStartOf="@+id/edit_new_book_name"
+                    app:layout_constraintTop_toBottomOf="@+id/edit_new_book_aduio_toogle" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.5" />
+
+                <NumberPicker
+                    android:id="@+id/edit_new_book_reading_year_period_picker"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintEnd_toEndOf="@+id/edit_new_book_name"
+                    app:layout_constraintStart_toStartOf="@+id/guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/edit_new_book_aduio_toogle" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"
+                    app:layout_constraintBottom_toTopOf="@+id/edit_new_book_read_percent_seekbar"
+                    app:layout_constraintTop_toBottomOf="@+id/edit_new_book_reading_year_picker" />
+
+                <SeekBar
+                    android:id="@+id/edit_new_book_read_percent_seekbar"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintEnd_toEndOf="@+id/edit_new_book_name"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintStart_toStartOf="@+id/edit_new_book_name"
+                    app:layout_constraintTop_toBottomOf="@+id/edit_new_book_reading_year_picker" />
+
+                <TextView
+                    android:id="@+id/edit_new_book_read_percent_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/seekbar_info_text_top_margin"
+                    app:layout_constraintEnd_toEndOf="@+id/edit_new_book_read_percent_seekbar"
+                    app:layout_constraintStart_toStartOf="@+id/edit_new_book_read_percent_seekbar"
+                    app:layout_constraintTop_toBottomOf="@+id/edit_new_book_read_percent_seekbar"
+                    tools:text="33" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"
+                    app:layout_constraintBottom_toTopOf="@+id/edit_new_book_note"
+                    app:layout_constraintTop_toBottomOf="@+id/edit_new_book_read_percent_info" />
+
+                <EditText
+                    android:id="@+id/edit_new_book_note"
+                    style="@style/CommonEditText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:autofillHints=""
+                    android:background="@android:drawable/editbox_background_normal"
+                    android:ems="10"
+                    android:gravity="start|top"
+                    android:hint="@string/note"
+                    android:inputType="textMultiLine"
+                    android:text="@={viewModel.book.NOTE}"
+                    android:textSize="@dimen/editText_textSize_2_of_5"
+                    app:layout_constraintEnd_toEndOf="@+id/edit_new_book_name"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/edit_new_book_name"
+                    app:layout_constraintTop_toBottomOf="@+id/edit_new_book_read_percent_info" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

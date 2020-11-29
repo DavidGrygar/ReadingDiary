@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/navigation"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="android.example.readingdiary.sections.main_list.MainFragment"
+        android:label="@string/main_list_title" >
+        <action
+            android:id="@+id/action_mainFragment_to_newBookFragment"
+            app:destination="@id/newBookFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_detailBookFragment"
+            app:destination="@id/detailBookFragment"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit" />
+    </fragment>
+    <fragment
+        android:id="@+id/newBookFragment"
+        android:name="android.example.readingdiary.sections.new_book.NewBookFragment"
+        android:label="@string/new_book_title" >
+        <action
+            android:id="@+id/action_newBookFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailBookFragment"
+        android:name="android.example.readingdiary.sections.detail_book.DetailBookFragment"
+        android:label="@string/detail_book_title" >
+        <argument
+            android:name="bookID"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_detailBookFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_detailBookFragment_to_editBookFragment"
+            app:destination="@id/editBookFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editBookFragment"
+        android:name="android.example.readingdiary.sections.edit_book.EditBookFragment"
+        android:label="@string/edit_book_title" >
+        <argument
+            android:name="bookID"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_editBookFragment_to_detailBookFragment"
+            app:destination="@id/detailBookFragment"
+            app:popUpTo="@id/detailBookFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+</navigation>

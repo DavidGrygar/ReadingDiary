@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="android.example.readingdiary.sections.detail_book.DetailBookViewModel" />
+
+        <import type="android.example.readingdiary.data.enums.BookType" />
+        <import type="android.example.readingdiary.data.enums.PeriodOfYear" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".sections.detail_book.DetailBookFragment">
+
+        <TextView
+            android:id="@+id/detail_book_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
+            android:gravity="center_horizontal"
+            android:text="@{viewModel.book.NAME}"
+            android:textSize="@dimen/editText_textSize_4_of_5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Od nuly k jedničce" />
+
+        <ImageView
+            android:id="@+id/detail_book_book_type_image"
+            android:layout_width="@dimen/book_type_icons_dimen"
+            android:layout_height="@dimen/book_type_icons_dimen"
+            android:layout_marginTop="16dp"
+            app:bookTypeImage="@{viewModel.book}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detail_book_name"
+            tools:srcCompat="@drawable/ic_book" />
+
+        <TextView
+            android:id="@+id/detail_book_note"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@{viewModel.book.NOTE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detail_book_book_type_image"
+            tools:text="Velmi velmi velmi dlouhá poznámka k této knize který byla skvěla a tak dále bla bla bla Barča je tu" />
+
+        <TextView
+            android:id="@+id/detail_book_reading_year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:text="@{String.valueOf(viewModel.book.READING_YEAR)}"
+            app:layout_constraintEnd_toStartOf="@+id/detail_book_reading_year_period"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="@+id/detail_book_note"
+            app:layout_constraintTop_toBottomOf="@+id/detail_book_note"
+            tools:text="2019" />
+
+        <TextView
+            android:id="@+id/detail_book_reading_year_period"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="@+id/detail_book_note"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@+id/detail_book_reading_year"
+            app:layout_constraintTop_toBottomOf="@+id/detail_book_note"
+            app:readingYearPeriodToString="@{viewModel.book.READING_YEAR_PERIOD}"
+            tools:text="April" />
+
+        <ProgressBar
+            android:id="@+id/detail_book_read_percent_progress_bar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:progress="@{viewModel.book.READ_PERCENT}"
+            app:layout_constraintEnd_toEndOf="@+id/detail_book_name"
+            app:layout_constraintStart_toStartOf="@+id/detail_book_name"
+            app:layout_constraintTop_toBottomOf="@+id/detail_book_reading_year" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/seekbar_info_text_top_margin"
+            android:text="@{String.valueOf(viewModel.book.READ_PERCENT)}"
+            app:layout_constraintEnd_toEndOf="@+id/detail_book_read_percent_progress_bar"
+            app:layout_constraintStart_toStartOf="@+id/detail_book_read_percent_progress_bar"
+            app:layout_constraintTop_toBottomOf="@+id/detail_book_read_percent_progress_bar"
+            tools:text="85" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
